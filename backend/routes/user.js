@@ -15,22 +15,20 @@ const TemplateService = require('../services/template.service');
 //     }
 // }
 
-// const upload = multer({
-//     storage: multer.diskStorage({
-//         destination: (req, file, cb) => {
-//             cb(null, 'uploads/');
-//         },
-//         filename: (req, file, cb) => {
-//             cb(null, file.originalname);
-//         }
-//     }),
-//     limits: {
-//         fileSize: 1024 * 1024 * 50
-//     },
-//     fileFilter: fileFilter
-// });
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + file.originalname);
+    }
+})
 
-const upload = multer({dest: 'uploads/'});
+const upload = multer({
+    storage: storage
+});
+
+// const upload = multer({dest: 'uploads/'});
 
 //Create Post
 
