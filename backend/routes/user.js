@@ -52,8 +52,8 @@ router.post('/', upload.fields([{ name: 'resume', maxCount: 1 }, { name: 'photo'
             expected_monthly_sal: req.body.expected_monthly_sal,
             possible_month_of_joining: req.body.possible_month_of_joining,
             additional_info: req.body.additional_info,
-            resume: req.files.resume[0].filename,
-            photo: req.files.photo[0].filename
+            resume: req.files.resume[0].filename + req.files.resume[0].originalname,
+            photo: req.files.photo[0].filename + req.files.photo[0].originalname
         });
         console.log(req.files);
         user.save()
